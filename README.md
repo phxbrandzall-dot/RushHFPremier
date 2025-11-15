@@ -1,4 +1,3 @@
-✅ Here is a clean, professional README you can copy/paste right now:
 RUSH Premiere Microsite — PHX Brand Architecture & PR Studio
 
 This project is a custom-built, cinematic landing page created for the invitation-only world premiere of the feature film RUSH, directed by Abeni Nazeer.
