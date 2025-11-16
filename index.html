@@ -1,39 +1,845 @@
 <!DOCTYPE html>
-<!-- saved from url=(0064)https://replit.com/t/phx-brand-agency/repls/PHX-Brand-Agency-API -->
-<html lang="en" class="replit-ui-theme-root notranslate" translate="no" style="app-region: unset; --cf-show: 1;" data-focus-visible="true"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>.ͼ1.cm-focused {outline: 1px dotted #212121;}
-.ͼ1 {position: relative !important; box-sizing: border-box; display: flex !important; flex-direction: column;}
-.ͼ1 .cm-scroller {display: flex !important; align-items: flex-start !important; font-family: monospace; line-height: 1.4; height: 100%; overflow-x: auto; position: relative; z-index: 0; overflow-anchor: none;}
-.ͼ1 .cm-content[contenteditable=true] {-webkit-user-modify: read-write-plaintext-only;}
-.ͼ1 .cm-content {margin: 0; flex-grow: 2; flex-shrink: 0; display: block; white-space: pre; word-wrap: normal; box-sizing: border-box; min-height: 100%; padding: 4px 0; outline: none;}
-.ͼ1 .cm-lineWrapping {white-space: pre-wrap; white-space: break-spaces; word-break: break-word; overflow-wrap: anywhere; flex-shrink: 1;}
-.ͼ2 .cm-content {caret-color: black;}
-.ͼ3 .cm-content {caret-color: white;}
-.ͼ1 .cm-line {display: block; padding: 0 2px 0 6px;}
-.ͼ1 .cm-layer > * {position: absolute;}
-.ͼ1 .cm-layer {position: absolute; left: 0; top: 0; contain: size style;}
-.ͼ2 .cm-selectionBackground {background: #d9d9d9;}
-.ͼ3 .cm-selectionBackground {background: #222;}
-.ͼ2.cm-focused > .cm-scroller > .cm-selectionLayer .cm-selectionBackground {background: #d7d4f0;}
-.ͼ3.cm-focused > .cm-scroller > .cm-selectionLayer .cm-selectionBackground {background: #233;}
-.ͼ1 .cm-cursorLayer {pointer-events: none;}
-.ͼ1.cm-focused > .cm-scroller > .cm-cursorLayer {animation: steps(1) cm-blink 1.2s infinite;}
-@keyframes cm-blink {50% {opacity: 0;}}
-@keyframes cm-blink2 {50% {opacity: 0;}}
-.ͼ1 .cm-cursor, .ͼ1 .cm-dropCursor {border-left: 1.2px solid black; margin-left: -0.6px; pointer-events: none;}
-.ͼ1 .cm-cursor {display: none;}
-.ͼ3 .cm-cursor {border-left-color: #444;}
-.ͼ1 .cm-dropCursor {position: absolute;}
-.ͼ1.cm-focused > .cm-scroller > .cm-cursorLayer .cm-cursor {display: block;}
-.ͼ1 .cm-iso {unicode-bidi: isolate;}
-.ͼ1 .cm-announced {position: fixed; top: -10000px;}
-@media print {.ͼ1 .cm-announced {display: none;}}
-.ͼ2 .cm-activeLine {background-color: #cceeff44;}
-.ͼ3 .cm-activeLine {background-color: #99eeff33;}
-.ͼ2 .cm-specialChar {color: red;}
-.ͼ3 .cm-specialChar {color: #f78;}
-.ͼ1 .cm-gutters {flex-shrink: 0; display: flex; height: 100%; box-sizing: border-box; inset-inline-start: 0; z-index: 200;}
-.ͼ2 .cm-gutters {background-color: #f5f5f5; color: #6c6c6c; border-right: 1px solid #ddd;}
-.ͼ3 .cm-gutters {background-color: #333338; color: #ccc;}
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>RUSH – Beverly Hills Premiere</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #020304;
+      --bg-soft: #050910;
+      --gold: #f5c84c;
+      --gold-soft: #b89538;
+      --teal: #00b5d9;
+      --text: #f8f8f8;
+      --muted: #7f8a96;
+      --card-bg: rgba(7, 12, 20, 0.92);
+      --radius: 18px;
+      --shadow: 0 24px 60px rgba(0,0,0,0.75);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      background: radial-gradient(circle at top, #04101c 0, #000 55%);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 20px 80px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .logo-mark {
+      font-size: 12px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      margin-bottom: 10px;
+    }
+
+    .film-title {
+      font-size: clamp(32px, 4vw, 40px);
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .byline {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .tagline {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--teal);
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      margin-bottom: 40px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.85)),
+        radial-gradient(circle at top, #063c5c, #020304 60%);
+    }
+
+    .hero-inner {
+      padding: 40px 28px 32px;
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.6fr);
+      gap: 28px;
+    }
+
+    @media (max-width: 800px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-copy h1 {
+      font-size: clamp(30px, 4vw, 38px);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .hero-copy h1 span {
+      display: block;
+      font-size: 13px;
+      letter-spacing: 0.25em;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+
+    .hero-copy p {
+      max-width: 32rem;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .hero-meta {
+      margin-top: 26px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+    }
+
+    .hero-meta span {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(245,200,76,0.2);
+    }
+
+    /* Countdown + Venue */
+    .hero-side {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, #0c1824, #020304 70%);
+      border-radius: calc(var(--radius) - 2px);
+      border: 1px solid rgba(245,200,76,0.18);
+      padding: 18px 20px 20px;
+    }
+
+    .card-title {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .countdown {
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .countdown-item {
+      flex: 1;
+      text-align: center;
+      padding: 10px 4px;
+      border-radius: 11px;
+      background: radial-gradient(circle at top, rgba(245,200,76,0.12), rgba(0,0,0,0.7));
+      border: 1px solid rgba(245,200,76,0.25);
+    }
+
+    .countdown-value {
+      font-size: 20px;
+      letter-spacing: 0.12em;
+    }
+
+    .countdown-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+    }
+
+    .venue-main {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .venue-line {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .time-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 10px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+    }
+
+    .time-row strong {
+      display: block;
+      margin-top: 3px;
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 22px;
+      border-radius: 999px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+      white-space: nowrap;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #f5c84c, #e4a927);
+      color: #060503;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.8);
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 22px 50px rgba(0,0,0,0.9);
+    }
+
+    .btn-ghost {
+      border: 1px solid rgba(245,200,76,0.35);
+      color: var(--gold);
+      background: transparent;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    /* Sections */
+    section {
+      margin-top: 56px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 34rem;
+      margin-bottom: 24px;
+    }
+
+    /* Trailer */
+    .trailer-frame {
+      position: relative;
+      padding-top: 56.25%;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(245,200,76,0.25);
+    }
+
+    .trailer-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Event experience */
+    .experience-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 18px;
+    }
+
+    .experience-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 18px 18px 16px;
+      border: 1px solid rgba(245,200,76,0.18);
+    }
+
+    .experience-card h3 {
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      color: var(--teal);
+    }
+
+    .experience-card ul {
+      list-style: none;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .experience-card li + li {
+      margin-top: 6px;
+    }
+
+    /* Editorial */
+    .editorial {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.6fr);
+      gap: 36px;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .editorial {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .editorial-image {
+      min-height: 260px;
+      border-radius: var(--radius);
+      background:
+        radial-gradient(circle at top left, rgba(245,200,76,0.14), rgba(0,0,0,0.9)),
+        linear-gradient(135deg, #102435, #030406);
+      border: 1px solid rgba(245,200,76,0.25);
+      position: relative;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: flex-end;
+      padding: 22px 22px 18px;
+    }
+
+    .editorial-image span {
+      font-size: 18px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .editorial-text h3 {
+      font-size: 14px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .editorial-text h2 {
+      font-size: 20px;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    .editorial-text p {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .pull-quote {
+      margin-top: 14px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(245,200,76,0.25);
+      font-size: 13px;
+      color: var(--teal);
+      font-style: italic;
+    }
+
+    /* Press & Media */
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+    }
+
+    .media-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid rgba(245,200,76,0.18);
+      padding: 16px 16px 14px;
+      font-size: 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .media-label {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .media-name {
+      font-size: 14px;
+    }
+
+    .media-meta {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .media-btn {
+      margin-top: 6px;
+      align-self: flex-start;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(245,200,76,0.4);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* AP Vision Fund */
+    .fund-card {
+      background: radial-gradient(circle at top, rgba(0,181,217,0.26), #020304 60%);
+      border-radius: var(--radius);
+      border: 1px solid rgba(0,181,217,0.5);
+      padding: 22px 22px 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .fund-card h2 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .fund-card p {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 40rem;
+    }
+
+    .fund-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .fund-pill {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(0,181,217,0.12);
+      border: 1px solid rgba(0,181,217,0.5);
+      color: var(--teal);
+    }
+
+    /* VIP Registration */
+    .vip-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid rgba(245,200,76,0.18);
+      padding: 22px 22px 20px;
+    }
+
+    .vip-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.4fr);
+      gap: 24px;
+      align-items: center;
+    }
+
+    @media (max-width: 800px) {
+      .vip-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .vip-highlight {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .vip-perks {
+      font-size: 13px;
+      color: var(--muted);
+      list-style: disc;
+      padding-left: 18px;
+    }
+
+    .vip-perks li + li {
+      margin-top: 4px;
+    }
+
+    .vip-price {
+      font-size: 13px;
+      margin-top: 10px;
+      color: var(--gold);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 60px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(245,200,76,0.16);
+      text-align: center;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .hashtags {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 6px;
+    }
+
+    .credits {
+      margin-top: 10px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="logo-mark">PHX BRAND AGENCY</div>
+      <div class="film-title">RUSH</div>
+      <div class="byline">A FILM BY ABENI NAZEER</div>
+      <div class="tagline">MAY THE LAND PROTECT YOU</div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <h1>
+            <span>WORLD PREMIERE</span>
+            RUSH – INDUSTRY PREVIEW NIGHT
+          </h1>
+          <p>
+            A comedic thriller with an ancestral edge, set to premiere at the
+            historic Fine Arts Theatre in Beverly Hills. An exclusive evening for
+            filmmakers, executives, tastemakers and press.
+          </p>
+
+          <div class="hero-meta">
+            <span>BEVERLY HILLS • CA</span>
+            <span>NOVEMBER 21 • 2025</span>
+            <span>RED CARPET • PANEL • RECEPTION</span>
+          </div>
+
+          <div class="hero-buttons">
+            <a class="btn btn-gold" href="https://eventbrite.com" target="_blank" rel="noopener">
+              RSVP / GET TICKETS
+            </a>
+            <a class="btn btn-ghost" href="#press">
+              PRESS PACK
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <div class="card">
+            <div class="card-title">Premiere In</div>
+            <!-- Static countdown placeholders – can be replaced with JS later -->
+            <div class="countdown">
+              <div class="countdown-item">
+                <div class="countdown-value">06</div>
+                <div class="countdown-label">Days</div>
+              </div>
+              <div class="countdown-item">
+                <div class="countdown-value">01</div>
+                <div class="countdown-label">Hours</div>
+              </div>
+              <div class="countdown-item">
+                <div class="countdown-value">43</div>
+                <div class="countdown-label">Minutes</div>
+              </div>
+              <div class="countdown-item">
+                <div class="countdown-value">57</div>
+                <div class="countdown-label">Seconds</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Venue</div>
+            <div class="venue-main">The Fine Arts Theatre</div>
+            <div class="venue-line">8556 Wilshire Blvd, Beverly Hills, CA 90211</div>
+
+            <div class="time-row">
+              <div>
+                RED CARPET
+                <strong>6:00 PM</strong>
+              </div>
+              <div>
+                DOORS
+                <strong>6:30 PM</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRAILER -->
+    <section id="trailer">
+      <div class="section-label">Watch the trailer</div>
+      <div class="section-title">Experience the tension, laughter & ancestral edge</div>
+      <p class="section-sub">
+        Replace the video below with the official RUSH trailer link when ready.
+      </p>
+      <div class="trailer-frame">
+        <!-- Replace VIDEO_ID with your YouTube trailer ID -->
+        <iframe
+          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+          title="RUSH Trailer"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </section>
+
+    <!-- EVENT EXPERIENCE -->
+    <section id="experience">
+      <div class="section-label">Event Experience</div>
+      <div class="section-title">An exclusive industry evening</div>
+      <p class="section-sub">
+        The premiere is designed as a full red-carpet showcase – not just a
+        screening, but a complete experience for press, partners, and VIP guests.
+      </p>
+
+      <div class="experience-grid">
+        <div class="experience-card">
+          <h3>Highlights</h3>
+          <ul class="experience-list">
+            <li>Red carpet and media arrivals</li>
+            <li>Director’s panel and Q&amp;A following the film</li>
+            <li>Industry-only audience and special guests</li>
+            <li>Curated photo moments throughout the venue</li>
+          </ul>
+        </div>
+        <div class="experience-card">
+          <h3>Reception</h3>
+          <ul>
+            <li>Premium refreshments and cocktails</li>
+            <li>Swag bag featuring exclusive RUSH merch</li>
+            <li>Hosted networking with filmmakers and investors</li>
+          </ul>
+        </div>
+        <div class="experience-card">
+          <h3>Menu</h3>
+          <ul>
+            <li>Mediterranean bites &amp; vegan sushi selection</li>
+            <li>Organic options and chef-curated small plates</li>
+            <li>Signature cocktails for 21+ guests</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDITORIAL -->
+    <section id="editorial">
+      <div class="section-label">Featured editorial</div>
+      <div class="section-title">The Prestige Genre Architect</div>
+
+      <div class="editorial">
+        <div class="editorial-image">
+          <span>The Prestige<br />Genre Architect</span>
+        </div>
+        <div class="editorial-text">
+          <h3>Abeni Nazeer</h3>
+          <h2>Redefining the blueprint for indie cinema</h2>
+          <p>
+            Following her breakout collaboration with Louis Gossett Jr., Abeni
+            Nazeer returns with RUSH – a kinetic, cultural, comedic thriller
+            rewriting the rules of prestige genre storytelling.
+          </p>
+          <p>
+            The film is both a calling card and a proof-of-concept for a wider
+            ecosystem of stories, creators, and investors who believe that
+            visionary cinema and commercial success can be the same thing.
+          </p>
+          <div class="pull-quote">
+            “Every film we launch is building an ecosystem, not just a revenue stream.
+            That’s the lever for generational change — if the system won’t open doors,
+            we manufacture our own and hold them open.”
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AP VISION FUND -->
+    <section id="fund">
+      <div class="section-label">Vision is the new capital</div>
+      <div class="section-title">The AP Vision Fund</div>
+
+      <div class="fund-card">
+        <h2>A first-of-its-kind cultural finance ecosystem</h2>
+        <p>
+          The AP Vision Fund is designed to turn every film into a self-reinvesting
+          seed — building infrastructure for the next generation of storytellers.
+          RUSH is the flagship activation of this model, pairing cinematic IP with
+          a scalable pathway for access, education, and collaboration across the
+          film economy.
+        </p>
+
+        <div class="fund-pill-row">
+          <div class="fund-pill">Creative</div>
+          <div class="fund-pill">Cultural</div>
+          <div class="fund-pill">Social</div>
+          <div class="fund-pill">Educational</div>
+          <div class="fund-pill">Economic</div>
+        </div>
+
+        <div class="hero-buttons" style="margin-top: 16px;">
+          <a class="btn btn-ghost" href="#" target="_blank" rel="noopener">
+            Read Fund Overview (PDF)
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRESS & MEDIA -->
+    <section id="press">
+      <div class="section-label">Press &amp; Media</div>
+      <div class="section-title">Downloadable assets</div>
+      <p class="section-sub">
+        Provide your editor or outlet with everything needed for coverage:
+        synopsis, key art, premiere details, and the AP Vision Fund overview.
+        Replace the links below with your live files.
+      </p>
+
+      <div class="media-grid">
+        <div class="media-card">
+          <div class="media-label">Press Release</div>
+          <div class="media-name">RUSH Premiere Announcement</div>
+          <div class="media-meta">PDF • synopsis, credits &amp; logline</div>
+          <a href="#" class="media-btn" target="_blank" rel="noopener">Download</a>
+        </div>
+        <div class="media-card">
+          <div class="media-label">Premiere Invitation</div>
+          <div class="media-name">Industry Preview Event</div>
+          <div class="media-meta">PNG • shareable invite artwork</div>
+          <a href="#" class="media-btn" target="_blank" rel="noopener">Download</a>
+        </div>
+        <div class="media-card">
+          <div class="media-label">Official Poster</div>
+          <div class="media-name">RUSH Key Art</div>
+          <div class="media-meta">JPEG • high-resolution poster</div>
+          <a href="#" class="media-btn" target="_blank" rel="noopener">Download</a>
+        </div>
+        <div class="media-card">
+          <div class="media-label">Complete Press Pack</div>
+          <div class="media-name">Drive / Folder Link</div>
+          <div class="media-meta">Hi-res stills, BTS, logos &amp; documents</div>
+          <a href="#" class="media-btn" target="_blank" rel="noopener">Open Folder</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIP REGISTRATION -->
+    <section id="vip">
+      <div class="section-label">VIP Registration</div>
+      <div class="section-title">Seats are limited</div>
+
+      <div class="vip-card">
+        <div class="vip-grid">
+          <div>
+            <p class="vip-highlight">
+              This is an exclusive industry event. A VIP access code is required
+              to complete registration on Eventbrite.
+            </p>
+            <ul class="vip-perks">
+              <li>Complimentary access for select personal invitees and media</li>
+              <li>Student &amp; emerging filmmaker tickets available</li>
+              <li>Red carpet entry and premium screening experience</li>
+            </ul>
+            <p class="vip-price">
+              General VIP tickets from <strong>$34</strong> (limited availability).
+            </p>
+          </div>
+          <div style="text-align:center;">
+            <a class="btn btn-gold" href="https://eventbrite.com" target="_blank" rel="noopener">
+              REGISTER ON EVENTBRITE
+            </a>
+            <p style="margin-top:10px;font-size:11px;color:var(--muted);">
+              You’ll be redirected to Eventbrite to complete your registration.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="hashtags">
+        #RUSHPremiere &nbsp; #MayTheLandProtectYou &nbsp; #APVisionFund
+      </div>
+      <div class="credits">
+        Produced under RUSH HF LLC · Presented by Abeni Productions ·
+        In partnership with AP Vision Fund · Site architecture by PHX Brand Agency
+      </div>
+      <div class="credits" style="margin-top:6px;">
+        © 2025 AP Vision Fund. All rights reserved.
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
 .ͼ1 .cm-gutter {display: flex !important; flex-direction: column; flex-shrink: 0; box-sizing: border-box; min-height: 100%; overflow: hidden;}
 .ͼ1 .cm-gutterElement {box-sizing: border-box;}
 .ͼ1 .cm-lineNumbers .cm-gutterElement {padding: 0 3px 0 5px; min-width: 20px; text-align: right; white-space: nowrap;}
